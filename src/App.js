@@ -1,4 +1,4 @@
-import { Button, Heading, Link, Pane, Paragraph } from 'evergreen-ui';
+import { Button, Heading, Pane } from 'evergreen-ui';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import logo from '../src/images/wifi.png';
@@ -27,7 +27,7 @@ function App() {
     // Settings: Mark your network as hidden SSID
     hiddenSSID: false,
     // Settings: Portrait orientation
-    portrait: false,
+    portrait: true,
   });
   const [errors, setErrors] = useState({
     ssidError: '',
@@ -139,18 +139,6 @@ function App() {
         <Heading size={900} paddingRight={16} paddingLeft={16}>
           {t('title')}
         </Heading>
-      </Pane>
-
-      <Pane>
-        <Paragraph marginTop={12}>{t('desc.use')}</Paragraph>
-
-        <Paragraph marginTop={12}>
-          {t('desc.privacy')}{' '}
-          <Link href="https://github.com/bndw/wifi-card">
-            {t('desc.source')}
-          </Link>
-          .
-        </Paragraph>
       </Pane>
 
       <WifiCard

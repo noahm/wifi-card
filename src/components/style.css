@@ -8,6 +8,8 @@
   margin-bottom: 1em;
   margin-top: 2em;
   padding: 1em;
+  height: 7in;
+  width: 5in;
 }
 
 .details {
@@ -17,7 +19,6 @@
 
 .qrcode {
   margin-bottom: 1em;
-  max-width: 175px;
 }
 
 .hidden {
@@ -72,5 +73,8 @@ button {
     position: absolute;
     left: 0;
     top: 0;
+  }
+  textarea {
+    text-align: center;
   }
 }

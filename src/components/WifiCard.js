@@ -8,7 +8,7 @@ import {
   Text,
   TextareaField,
 } from 'evergreen-ui';
-import QRCode from 'qrcode.react';
+import { QRCodeCanvas } from 'qrcode.react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import logo from '../../src/images/wifi.png';
@@ -46,7 +46,7 @@ export const WifiCard = (props) => {
 
   const portraitWidth = () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    return isMobile ? '100%' : '280px';
+    return isMobile ? '100%' : '5in';
   };
 
   const passwordFieldLabel = () => {
@@ -71,14 +71,9 @@ export const WifiCard = (props) => {
         elevation={3}
         style={{ maxWidth: props.settings.portrait ? portraitWidth() : '100%' }}
       >
-        <Pane display="flex" paddingBottom={12}>
-          <img alt="icon" src={logo} width="24" height="24" />
-          <Heading
-            size={700}
-            paddingRight={10}
-            paddingLeft={10}
-            textAlign={props.settings.portrait ? 'center' : 'unset'}
-          >
+        <Pane display="flex" paddingBottom={12} justifyContent="center">
+          <img alt="icon" src={logo} width="48" height="48" />
+          <Heading size={900} paddingRight={10} paddingLeft={10}>
             {t('wifi.login')}
           </Heading>
         </Pane>
@@ -87,11 +82,11 @@ export const WifiCard = (props) => {
           className="details"
           style={{ flexDirection: props.settings.portrait ? 'column' : 'row' }}
         >
-          <QRCode
+          <QRCodeCanvas
             className="qrcode"
             style={{ padding: '1em' }}
             value={qrvalue}
-            size={150}
+            size={300}
           />
 
           <Pane width={'100%'}>
@@ -110,6 +105,7 @@ export const WifiCard = (props) => {
               onChange={(e) => props.onSSIDChange(e.target.value)}
               isInvalid={!!props.ssidError}
               validationMessage={!!props.ssidError && props.ssidError}
+              textAlign="center"
             />
             <TextareaField
               id="eapmethod"
@@ -163,6 +159,7 @@ export const WifiCard = (props) => {
                   ? '5em'
                   : 'auto'
               }
+              textAlign="center"
               label={passwordFieldLabel()}
               placeholder={t('wifi.password.placeholder')}
               value={props.settings.password}
@@ -172,10 +169,9 @@ export const WifiCard = (props) => {
             />
           </Pane>
         </Pane>
-        <hr />
-        <Paragraph>
-          <CameraIcon />
-          <MobilePhoneIcon />
+        <Paragraph textAlign="center">
+          <CameraIcon verticalAlign="middle" />
+          <MobilePhoneIcon verticalAlign="middle" />
           <Text size={300} paddingRight={8} paddingLeft={8}>
             {t('wifi.tip')}
           </Text>
